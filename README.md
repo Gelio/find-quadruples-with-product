@@ -47,3 +47,34 @@ For `A = [1, 2, 3, 6, 2, 6, 1, 24, 5]`, the result is 5:
    Then, the algorithm loops through all k < l indices and computes A\[l\] / A\[k\] = res.
    It can then look at the indices in the hashmap for the found result `res`.
    It filters the indices `j` which are smaller than `k`.
+
+## Benchmark
+
+[Criterion.rs](https://bheisler.github.io/criterion.rs/book/criterion_rs.html)
+is used to benchmark the solutions.
+
+To run the benchmark, run:
+
+```sh
+cargo bench --bench solution -- --sample-size 10
+```
+
+The lower `--sample-size` is to prevent running the naive algorithm many times,
+since it is slow and takes a long time in general for large outputs.
+
+Here is the Criterion benchmark result comparing the 3 solutions:
+
+![Benchmark result showing the execution time for the 3 solutions for arrays of
+length up to 2000](https://user-images.githubusercontent.com/889383/169667137-2dc3e253-73b5-499c-93ae-9c69ca7708d5.png)
+
+The different magnitudes of time complexity of the 3 solutions are clearly
+visible. The naive solution scales much worse than the pruning one, and that
+one is worse than the division one.
+
+## Running the tests
+
+To run the unit tests, run:
+
+```sh
+cargo test
+```
