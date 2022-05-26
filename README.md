@@ -9,7 +9,7 @@ A solution to the following algorithmic challenge:
 
 For `A = [1, 2, 3, 6, 2, 6, 1, 24, 5]`, the result is 5:
 
-- 1 \* 2 \* 3 = 6 (twice, for k = 3 or k = 5)
+- 1 \* 2 \* 3 = 6 (twice, for l = 3 or l = 5)
 - 1 \* 3 \* 2 = 6
 - 2 \* 6 \* 2 = 24
 - 2 \* 2 \* 6 = 24
