@@ -12,3 +12,6 @@ rand = { version = "0.8.5", features = ["small_rng"] }
 [[bench]]
 name = "solution"
 harness = false
+
+[dependencies]
+rayon = "1.5.3"

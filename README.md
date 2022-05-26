@@ -21,6 +21,10 @@ For `A = [1, 2, 3, 6, 2, 6, 1, 24, 5]`, the result is 5:
    Looks through all possible quadruples of indices i < j < k < l and tests the
    equation.
 
+   There is also a paralellized variant of this solution that uses
+   [rayon](https://crates.io/crates/rayon) to look through multiple `i` in
+   parallel.
+
 2. With pruning, O(n^3)
 
    Prepares a hashmap whose keys are array values and hashmap values are sets
@@ -65,11 +69,13 @@ since it is slow and takes a long time in general for large outputs.
 Here is the Criterion benchmark result comparing the 3 solutions:
 
 ![Benchmark result showing the execution time for the 3 solutions for arrays of
-length up to 2000](https://user-images.githubusercontent.com/889383/169667137-2dc3e253-73b5-499c-93ae-9c69ca7708d5.png)
+length up to 2000](https://user-images.githubusercontent.com/889383/170463142-f9b4b615-c310-4e48-9c7f-8ece6044f505.png)
 
-The different magnitudes of time complexity of the 3 solutions are clearly
+The different magnitudes of time complexity of the 4 solutions are clearly
 visible. The naive solution scales much worse than the pruning one, and that
-one is worse than the division one.
+one is worse than the division one. An interesting observation is that
+paralellizing the naive solution yields similar results to reducing the
+time-complexity to O(n^3).
 
 ## Running the tests
 

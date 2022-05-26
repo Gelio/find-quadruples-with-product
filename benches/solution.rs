@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion};
-use find_quadruples_with_products::{division, naive, pruning};
+use find_quadruples_with_products::{division, naive, naive_parallel, pruning};
 use rand::{prelude::SmallRng, Rng, SeedableRng};
 
 fn bench_solutions(c: &mut Criterion) {
@@ -13,6 +13,12 @@ fn bench_solutions(c: &mut Criterion) {
             group.bench_with_input(BenchmarkId::new("Naive O(n^4)", i), &i, |b, _i| {
                 b.iter(|| naive::solve(&array))
             });
+
+            group.bench_with_input(
+                BenchmarkId::new("Parallelized naive O(n^4)", i),
+                &i,
+                |b, _i| b.iter(|| naive_parallel::solve(&array)),
+            );
         }
 
         group.bench_with_input(BenchmarkId::new("Using pruning O(n^3)", i), &i, |b, _i| {
